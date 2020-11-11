@@ -1,0 +1,15 @@
+{
+	"components": {
+	    "x-552910-card-list": {
+	        "innerComponents": [],
+			"uiBuilder": {
+				"associatedTypes": ["global.core", "global.landing-page"],
+				"label": "My Cart List",
+				"icon": "document-outline",
+				"description": "My first Cart List",
+				"category": "primitives"
+			}
+	    }
+	},
+	"scopeName": "x_552910_test_ca_0"
+}
