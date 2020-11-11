@@ -22,6 +22,7 @@
 		"@servicenow/sass-kit": "paris",
 		"@servicenow/sass-theme": "paris",
 		"@servicenow/ui-core": "paris",
+		"@servicenow/ui-effect-http": "18.2.5",
 		"@servicenow/ui-renderer-snabbdom": "paris"
 	},
 	"devDependencies": {
