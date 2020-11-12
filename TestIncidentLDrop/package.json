@@ -15,13 +15,15 @@
 	},
 	"module": "src/index.js",
 	"dependencies": {
-		"@servicenow/ui-core": "paris",
-		"@servicenow/ui-renderer-snabbdom": "paris",
 		"@servicenow/cli-archetype": "18.0.0",
 		"@servicenow/cli-component-archetype": "18.0.0",
-		"@servicenow/sass-theme": "paris",
+		"@servicenow/library-translate": "paris",
+		"@servicenow/now-template-card": "^18.4.2",
 		"@servicenow/sass-kit": "paris",
-		"@servicenow/library-translate": "paris"
+		"@servicenow/sass-theme": "paris",
+		"@servicenow/ui-core": "paris",
+		"@servicenow/ui-effect-http": "^18.2.5",
+		"@servicenow/ui-renderer-snabbdom": "paris"
 	},
 	"devDependencies": {
 		"@servicenow/cli-archetype-dev": "18.0.0",

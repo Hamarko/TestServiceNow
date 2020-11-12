@@ -4,12 +4,12 @@ const {COMPONENT_BOOTSTRAPPED} = actionTypes;
 import snabbdom from '@servicenow/ui-renderer-snabbdom';
 import "@servicenow/now-template-card";
 import styles from './styles.scss';
-const FechData = createHttpEffect('api/now/table/incident', {
+const FETCH_INCIDENT = createHttpEffect('api/now/table/incident', {
 	method: 'GET',	
 	queryParams: ['sysparm_display_value'],
-	successActionType: 'FETCH_LATEST_INCIDENT_SUCCESS'
+	successActionType: 'FETCH_INCIDENT_SUCCESS'
 })
-console.log(FechData)
+
 const view = (state, {updateState}) => {	
 	const {incidents} = state;		
     if(incidents){
@@ -41,12 +41,12 @@ createCustomElement('x-552910-incident-list', {
 	actionHandlers: {
 		[COMPONENT_BOOTSTRAPPED]: (coeffects) => {
 			const { dispatch } = coeffects;		
-			dispatch('FETCH_LATEST_INCIDENT', {
+			dispatch('FETCH_INCIDENT', {
 				sysparm_display_value:'true'
 			});
 		},
-		'FETCH_LATEST_INCIDENT': FechData,
-		'FETCH_LATEST_INCIDENT_SUCCESS': (coeffects) => {			
+		'FETCH_INCIDENT': FETCH_INCIDENT,
+		'FETCH_INCIDENT_SUCCESS': (coeffects) => {			
 			const { action, updateState } = coeffects;
 			const { result } = action.payload;			
 			const incidents = []
@@ -58,7 +58,6 @@ createCustomElement('x-552910-incident-list', {
 			})					
 			updateState({incidents});
 		}
-
 	},
 	renderer: {type: snabbdom},
 	view,	
