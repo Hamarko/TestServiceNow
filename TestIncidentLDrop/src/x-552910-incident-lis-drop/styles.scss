@@ -11,5 +11,10 @@
         color: rgb(3, 8, 160);
         text-align: center;
     }
+    .now-input{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 1em;  
+    }    
 
 }

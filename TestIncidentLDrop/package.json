@@ -18,6 +18,8 @@
 		"@servicenow/cli-archetype": "18.0.0",
 		"@servicenow/cli-component-archetype": "18.0.0",
 		"@servicenow/library-translate": "paris",
+		"@servicenow/now-input": "^18.4.2",
+		"@servicenow/now-modal": "^18.4.2",
 		"@servicenow/now-template-card": "^18.4.2",
 		"@servicenow/sass-kit": "paris",
 		"@servicenow/sass-theme": "paris",
