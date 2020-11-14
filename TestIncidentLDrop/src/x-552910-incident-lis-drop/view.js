@@ -39,7 +39,7 @@ export default (state, {updateState}) => {
                 <now-modal 
                      size="lg" headerLabel="Modal header"
                      opened = {opened}                    
-                     footerActions={[{"label":"Delete","variant":"primary-negative"}]}>
+                     footerActions={[{"label":"Delete","variant":"primary-negative",'id':id}]}>
                         <div className="now-input">
                             {modalContent.map(inputProps => 
                             (<now-input label={inputProps[0]}  
