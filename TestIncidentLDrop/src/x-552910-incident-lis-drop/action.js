@@ -16,8 +16,7 @@ export default {
 			});
 		},
 		'NOW_DROPDOWN_PANEL#ITEM_CLICKED':	(coeffects) =>{
-			const { action, updateState, dispatch, state} = coeffects;
-			console.log(action.payload.item)						
+			const { action, updateState, dispatch, state} = coeffects;								
 			const id = action.payload.item.id.split(' ')[0];
 			const button = action.payload.item.id.split(' ')[1];
 			const name = action.payload.item.label	
@@ -27,8 +26,7 @@ export default {
 			    updateState({id, opened});
 			} else if(button === "Delete") {								
 				deletedIncident (id, updateState, dispatch, state)
-			} else if (idName.split(' ')[0]==='Assigned'){
-				console.log('Work',name,idName)
+			} else if (idName.split(' ')[0]==='Assigned'){				
 				updateState({name,idName})
 			}			
 		},
@@ -48,27 +46,20 @@ export default {
 			const { result } = action.payload;					
 			updateState({result});
 		},
-		'ERROR': (coeffects) => {
-			console.log("Error:")
+		'ERROR': (coeffects) => {			
 			const { action } = coeffects
-			console.log( action.payload, coeffects )
+			console.log( "Error:",action.payload, coeffects )
 		},
 		'DELETED_INCIDENT': createHttpEffect('api/now/table/incident/:id',{
 			method: 'DELETE',
-			pathParams: ['id'],
-			successActionType:"CONSOL_LOG",
+			pathParams: ['id'],			
 			errorActionType:"ERROR"
-		}),
-		'CONSOL_LOG': (coeffects) => {
-			const { action } = coeffects
-			console.log('Log:', action.payload)
-		},
+		}),		
 		'NOW_MODAL#FOOTER_ACTION_CLICKED':(coeffects) =>{
 			const { action, updateState, dispatch, state} = coeffects;
 			const { id,label } = action.payload.action
 			const opened = false;
-			if ( label==='Delete' ){
-				console.log('Dlete', id)								
+			if ( label==='Delete' ){												
 				deletedIncident (id, updateState, dispatch, state)
 				updateState({opened})
 			}

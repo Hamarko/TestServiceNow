@@ -6,9 +6,7 @@ export default (state, {updateState}) => {
     const modalContent = [['','']]
     let uniAssigned = []
     const dropdownItems = [{id:'Assigned 0',label:'All'}]
-    let i = 0
-    console.log("name",name)    
-    console.log('fil',fieldValue)    
+    let i = 0   
     function filterIncident(incident){
         if (fieldValue !== null && name === "All"){
             return incident.short_description.includes(fieldValue)
@@ -22,8 +20,7 @@ export default (state, {updateState}) => {
                 return incident.short_description.includes(fieldValue) 
             }
         } else if (fieldValue === null && name !== "All"){
-            if (incident.assigned_to.display_value !== undefined && name !== 'Empty field') {   
-                console.log(name,incident.assigned_to.display_value.includes(name))         
+            if (incident.assigned_to.display_value !== undefined && name !== 'Empty field') {                    
                 return incident.assigned_to.display_value.includes(name)
             }
             if (incident.assigned_to.display_value === undefined && name !== 'Empty field'
@@ -39,9 +36,7 @@ export default (state, {updateState}) => {
                               ["Assignment group", card.assignment_group.display_value],
                               ["Assigned to","value",card.assigned_to.display_value]];
        modalContent.pop();
-       modalInstance.forEach(e => modalContent.push(e));  
-       console.log(modalContent) 
-       
+       modalInstance.forEach(e => modalContent.push(e)); 
     }; 
     if (result) {
         result.forEach(incident => {            
