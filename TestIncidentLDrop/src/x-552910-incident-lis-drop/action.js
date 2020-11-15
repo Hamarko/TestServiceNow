@@ -1,11 +1,16 @@
 import { actionTypes} from '@servicenow/ui-core';
 import { createHttpEffect } from '@servicenow/ui-effect-http';
 const {COMPONENT_BOOTSTRAPPED} = actionTypes;
+function deletedIncident (id, updateState, dispatch, state){
+	updateState({
+		result: state.result.filter(incident=>incident.sys_id !== id)
+	});				
+	dispatch('DELETED_INCIDENT', {id})
+}
 export default {
     actionHandlers: {
         [COMPONENT_BOOTSTRAPPED]: (coeffects) => {
-			const { dispatch } = coeffects;	
-			console.log('Work')	
+			const { dispatch } = coeffects;				
 			dispatch('FETCH_INCIDENT', {
 				sysparm_display_value:'true'
 			});
@@ -17,12 +22,8 @@ export default {
 			if(button === "Open_Record"){
 				const opened = true;
 			    updateState({id, opened});
-			} else if(button === "Delete") {
-				console.log(button,id)				
-				updateState({
-					result: state.result.filter(incident=>incident.sys_id !== id)
-				});				
-				dispatch('DELETED_INCIDENT', {id})
+			} else if(button === "Delete") {								
+				deletedIncident (id, updateState, dispatch, state)
 			}			
 		},
 		'NOW_MODAL#OPENED_SET': (coeffects) => {
@@ -62,12 +63,14 @@ export default {
 			const opened = false;
 			if ( label==='Delete' ){
 				console.log('Dlete', id)								
-				updateState({
-					result: state.result.filter(incident=>incident.sys_id !== id),
-					opened
-				});				
-				dispatch('DELETED_INCIDENT', {id})
+				deletedIncident (id, updateState, dispatch, state)
+				updateState({opened})
 			}
+		},
+		'NOW_INPUT#INPUT':(coeffects) =>{
+			const { action, updateState, dispatch, state} = coeffects
+			const { fieldValue } = action.payload;
+			updateState ({ fieldValue })
 		}
 
     }

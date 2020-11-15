@@ -2,8 +2,15 @@ import "@servicenow/now-template-card";
 import "@servicenow/now-modal";
 import "@servicenow/now-input";
 export default (state, {updateState}) => {
-    const {result,opened = 'false',id} = state;
-    const modalContent = [['','']]      
+    const {result,opened = 'false',id,fieldValue} = state;    
+    const modalContent = [['','']]
+    console.log('fil',fieldValue)
+    function filterIncident(incident){
+        if (fieldValue !== null && fieldValue !== undefined){
+            return incident.short_description.includes(fieldValue)
+        }
+        return true
+    }    
     if(opened === true){
        console.log(result, id)
        const card = result.find( e => (e.sys_id === id)? true : false);
@@ -16,12 +23,13 @@ export default (state, {updateState}) => {
        modalInstance.forEach(e => modalContent.push(e));  
        console.log(modalContent) 
        
-    } 
+    }; 
     if (result) {
         return (                                           
             <div className="wrapper">                                                          
-				<h1>Incident</h1>                                                                         
-                {result.map( d => (				
+				<h1>Incident</h1> 
+                <div className="input"><now-input label='Incident search' step="any" type="text" value=''/></div>                                                                        
+                {result.filter(filterIncident).map( d => (                    				
                     <now-template-card-assist 
                         tagline={{"icon":"tree-view-long-outline","label":"Incident"}}
                         actions={[{"id":d.sys_id+" Open_Record","label":"Open Record"},
