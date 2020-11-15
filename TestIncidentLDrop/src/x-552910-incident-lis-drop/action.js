@@ -16,14 +16,20 @@ export default {
 			});
 		},
 		'NOW_DROPDOWN_PANEL#ITEM_CLICKED':	(coeffects) =>{
-			const { action, updateState, dispatch, state} = coeffects;						
+			const { action, updateState, dispatch, state} = coeffects;
+			console.log(action.payload.item)						
 			const id = action.payload.item.id.split(' ')[0];
-			const button = action.payload.item.id.split(' ')[1];			
+			const button = action.payload.item.id.split(' ')[1];
+			const name = action.payload.item.label	
+			const idName = action.payload.item.id			
 			if(button === "Open_Record"){
 				const opened = true;
 			    updateState({id, opened});
 			} else if(button === "Delete") {								
 				deletedIncident (id, updateState, dispatch, state)
+			} else if (idName.split(' ')[0]==='Assigned'){
+				console.log('Work',name,idName)
+				updateState({name,idName})
 			}			
 		},
 		'NOW_MODAL#OPENED_SET': (coeffects) => {
